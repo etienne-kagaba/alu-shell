@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# This script prints all the processes with user-defined format
+ps -eo user,pid,pcpu,pmem,vsz,rss,tname,stat,bsdstart,bsdtime,command --forest

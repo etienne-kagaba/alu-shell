@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This script prints all the processes with bash in it
+# shellcheck disable=SC2009
+ps -eo user,pid,pcpu,pmem,vsz,rss,tname,stat,bsdstart,bsdtime,command --forest | grep bash | grep -v grep

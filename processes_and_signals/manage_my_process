@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# This script prints "To infinity and beyond" indefinitely
+if [ -e "/tmp/my_process" ]; then
+	echo "I am alive!" >> /tmp/my_process
+else
+	echo "I am alive!" > /tmp/my_process
+fi
+
+sleep 2
+
+while true; do
+    echo "I am alive!" >> /tmp/my_process
+    sleep 2
+done
+

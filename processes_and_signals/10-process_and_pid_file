@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# This script prints "To infinity and beyond" indefinitely
+mkdir -p /var/run
+echo $$ > /var/run/myscript.pid
+
+sigint_handler() {
+	echo "Y U no love me?!"
+}
+
+sigterm_handler() {
+	echo "I hate the kill command"
+	quit_handler
+}
+
+quit_handler() {
+	rm /var/run/myscript.pid
+	exit 0
+}
+
+trap "sigterm_handler" SIGTERM
+trap "sigint_handler" SIGINT
+trap "quit_handler" SIGQUIT
+
+while true; do
+    echo "To infinity and beyond"
+    sleep 2
+done
+

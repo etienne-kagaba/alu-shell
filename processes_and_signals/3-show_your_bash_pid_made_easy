@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# This script prints all the processes with bash in it
+# Find the PID of the current script
+script_pid=$$
+
+# Iterate over all processes in the /proc directory
+for pid_dir in /proc/[0-9]*; do
+    pid=$(basename "$pid_dir")
+
+    # Check if it's a directory and if the cmdline file exists
+    if [ -d "$pid_dir" ] && [ -f "$pid_dir/cmdline" ]; then
+        # Read the command line of the process
+        cmd=$(tr -d '\0' < "$pid_dir/cmdline" 2>/dev/null)
+
+        # Check if the command contains "bash"
+        if [[ "$cmd" == *bash* ]]; then
+            echo "$pid bash"
+        fi
+    fi
+done | grep -v "$script_pid bash"
